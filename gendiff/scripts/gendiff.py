@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+from gendiff.app import generate_diff
 
 
 def add_arg():
@@ -13,6 +14,7 @@ def add_arg():
         help='set format of output'
     )
     args = parser.parse_args()
+    return args
 
 
 def main():
