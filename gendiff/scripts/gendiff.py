@@ -4,7 +4,7 @@ from gendiff.app import generate_diff
 
 
 def add_arg():
-    parser = argparse.ArgumentParser(description='Compares two configuration files and shows a difference.')
+    parser = argparse.ArgumentParser(description='Compares two configuration files and shows a difference.') # noqa E501
     parser.add_argument('first_file')
     parser.add_argument('second_file')
     parser.add_argument(
@@ -18,7 +18,8 @@ def add_arg():
 
 
 def main():
-    print(add_arg())
+    args = add_arg()
+    generate_diff(args.first_file, args.second_file)
 
 
 if __name__ == '__main__':

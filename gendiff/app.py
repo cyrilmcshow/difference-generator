@@ -23,3 +23,4 @@ def generate_diff(file1_path, file2_path):
 
     result = f"{{{''.join(lines)}\n}}"
     print(result)
+    return result
