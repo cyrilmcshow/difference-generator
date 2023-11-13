@@ -1,6 +1,6 @@
 def prepare_data(data):
-    if data in ['0']:
-        return 0
+    if isinstance(data, int):
+        return int(data)
     if isinstance(data, dict):
         return '[complex value]'
     elif data not in ('true', 'false', 'null'):
@@ -12,7 +12,6 @@ def plain_view(diff, incoming_key=None):
     lines = []
     for key, value in diff.items():
         path = f"{incoming_key + '.' if incoming_key else ''}{key}"
-
         type_ = value.get('type')
         value_ = value.get('value')
         old_value = value.get('from')
@@ -27,8 +26,8 @@ def plain_view(diff, incoming_key=None):
             line = f"Property '{path}' was {type_}"
             lines.append(line)
         elif type_ == 'changed':
-            line = (f"Property '{path}' was updated."
-                    f" From {prepare_data(old_value)} "
+            line = (f"Property '{path}' was updated. "
+                    f"From {prepare_data(old_value)} "
                     f"to {prepare_data(new_value)}")
             lines.append(line)
 
