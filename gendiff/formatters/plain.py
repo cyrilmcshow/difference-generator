@@ -1,5 +1,5 @@
 def prepare_data(data):
-    if data == '0':
+    if data in ['0']:
         return 0
     if isinstance(data, dict):
         return '[complex value]'
