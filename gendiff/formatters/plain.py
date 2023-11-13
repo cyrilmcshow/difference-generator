@@ -3,7 +3,7 @@ def prepare_data(data):
         return '[complex value]'
     elif data not in ('true', 'false', 'null'):
         return f"'{data}'"
-    if data == ['0']:
+    if data == '0':
         return 0
     return data
 
