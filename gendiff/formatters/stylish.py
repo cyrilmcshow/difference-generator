@@ -14,7 +14,7 @@ def get_child(data, depth=0, space_count=4):
     return '{\n' + '\n'.join(result) + '\n' + space_for_changed_file + '}'
 
 
-def view_stylish(diff, depth=0, space_count=4):  # noqa C901
+def stylish_view(diff, depth=0, space_count=4):  # noqa C901
     lines = []
     space_for_changed_file = ' ' * depth * space_count
     depth += 1
@@ -26,7 +26,7 @@ def view_stylish(diff, depth=0, space_count=4):  # noqa C901
         if type_ == 'nested':
             lines.append(
                 f"{space_for_changed_file}    {upper_key}: "
-                f"{view_stylish(value, depth)}")
+                f"{stylish_view(value, depth)}")
         elif type_ == 'added':
             value = upper_value.get('value')
             lines.append(
