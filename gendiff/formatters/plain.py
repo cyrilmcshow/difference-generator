@@ -1,10 +1,10 @@
 def prepare_data(data):
+    if data == '0':
+        return 0
     if isinstance(data, dict):
         return '[complex value]'
     elif data not in ('true', 'false', 'null'):
         return f"'{data}'"
-    if data == '0':
-        return 0
     return data
 
 
