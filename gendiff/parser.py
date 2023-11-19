@@ -2,13 +2,15 @@ import json
 import yaml
 
 
-def parser(file1_path, file2_path):
-    if '.json' in file1_path:
-        data1 = json.load(open(file1_path))
-    if '.json' in file2_path:
-        data2 = json.load(open(file2_path))
-    if '.yaml' or '.yml' in file1_path:
-        data1 = yaml.load(open(file1_path), Loader=yaml.FullLoader)
-    if '.yaml' or '.yml' in file1_path:
-        data2 = yaml.load(open(file2_path), Loader=yaml.FullLoader)
-    return data1, data2
+def get_file_and_extension(path):
+    with open(path) as file:
+        result = file.read()
+        extension = '.json' if '.json' in file else '.yaml'
+    return result, extension
+
+
+def parsing_file(data, file_extension):
+    if file_extension == 'json':
+        return json.load(data)
+    elif file_extension == '.yaml' or '.yml':
+        return yaml.load(data, Loader=yaml.FullLoader)

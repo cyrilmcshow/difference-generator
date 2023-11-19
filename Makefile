@@ -27,4 +27,4 @@ package-install:
 gendiff:
 	poetry run gendiff
 
-.PHONY: install test lint selfcheck check build
+.PHONY: install test test-coverage lint selfcheck check build publish package-install gendiff

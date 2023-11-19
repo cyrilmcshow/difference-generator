@@ -8,27 +8,30 @@ def prepare_data(data):
     return data
 
 
-def plain_view(diff, incoming_key=None):
+def formatting_plain_view(diff, incoming_key=None): # noqa
     lines = []
     for key, value in diff.items():
         path = f"{incoming_key + '.' if incoming_key else ''}{key}"
-        type_ = value.get('type')
-        value_ = value.get('value')
+        element_type = value.get('type')
+        element_value = value.get('value')
         old_value = value.get('from')
         new_value = value.get('to')
-        if type_ == 'nested':
-            lines.append(plain_view(value_, path))
-        elif type_ == 'added':
-            line = (f"Property '{path}' was {type_} "
-                    f"with value: {prepare_data(value_)}")
+        if element_type == 'nested':
+            lines.append(formatting_plain_view(element_value, path))
+        elif element_type == 'added':
+            line = (f"Property '{path}' was {element_type} "
+                    f"with value: {prepare_data(element_value)}")
             lines.append(line)
-        elif type_ == 'removed':
-            line = f"Property '{path}' was {type_}"
+        elif element_type == 'removed':
+            line = f"Property '{path}' was {element_type}"
             lines.append(line)
-        elif type_ == 'changed':
+        elif element_type == 'changed':
             line = (f"Property '{path}' was updated. "
                     f"From {prepare_data(old_value)} "
                     f"to {prepare_data(new_value)}")
             lines.append(line)
-
+        elif element_type == 'unchanged':
+            continue
+        else:
+            raise ValueError
     return '\n'.join(lines)
