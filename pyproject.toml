@@ -8,7 +8,6 @@ packages = [{include = "gendiff"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-pytest-cov = "^4.1.0"
 pyyaml = "^6.0.1"
 
 [tool.poetry.scripts]

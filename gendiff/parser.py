@@ -9,7 +9,7 @@ def get_file_and_extension(path):
     return result, extension
 
 
-def parsing_file(data, file_extension):
+def get_parse_file(data, file_extension):
     if file_extension == 'json':
         return json.load(data)
     elif file_extension == '.yaml' or '.yml':
